@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, Navigator, StyleSheet, Image } from 'react-native';
+import { View, Button, Text, Navigator, StyleSheet, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 
 export default class Splash extends Component {
   render() {
     return (
-      <Image source={require('../../static/rail-image.jpg')} style={styles.bgImage}/>
+      <Image source={require('../../static/rail-image.jpg')} style={styles.bgImage}>
+        <Button onPress={Actions.counter} title="Hello"></Button>
+      </Image>
     )
+  }
+
+  moveToCounter() {
+    setTimeout(function () {
+      Actions.counter()
+    }, 5000)      
+  }
+
+  componentDidMount() {
+    return this.moveToCounter()
   }
 }
 
