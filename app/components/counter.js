@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { AppRegistry, View, Text, Navigator, StyleSheet, Image } from 'react-native';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, combineReduxers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import reducer from './../reducers';
+import reducer from '../reducers';
+import CounterContainer from '../containers/counter';
 
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
@@ -21,19 +21,9 @@ function configureStore(initialState) {
 
 const store = configureStore({});
 
-class Counter extends Component {
-  render() {
-    return (
-      <View>
-        <Text> Hello </Text>
-      </View>
-    )
-  }
-}
-
 const CounterApp = () => (
   <Provider store={store}>
-    <Counter />
+    <CounterContainer />
   </Provider>
 )
 
