@@ -2,34 +2,35 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
+import * as recipeAction from '../actions/recipes';
+
 
 class CounterContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { recipeCount: 0}
-  }
-
-  addRecipeCount() {
-    this.setState({recipeCount: this.state.recipeCount + 1});
-  }
-
   render() {
+    let props = this.props;
     return (
       <View>
         <Text> Hello </Text>
-        <Text> Recipie Count: {this.state.recipeCount} </Text>
-        <TouchableHighlight onPress={() => {this.addRecipeCount()}}>
-          <Text>
-            ADD
-          </Text>
+        <Text> Recipie Count: {props.recipeCount} </Text>
+        <TouchableHighlight onPress={() => {props.addRecipe()}}>
+          <Text> ADD </Text>
         </TouchableHighlight>
       </View>
     )
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(ActionCreators, dispatch)
-}
-export default connect(() => { return {} } , mapDispatchToProps)(CounterContainer);
+export default connect(
+  (state) => {
+    return {
+      recipeCount: state.recipeCount
+    }
+  } ,
+  (dispatch) => {
+    return {
+      addRecipe: () => {
+        dispatch(recipeAction.addRecipe())
+      }
+    }
+  }
+)(CounterContainer);
