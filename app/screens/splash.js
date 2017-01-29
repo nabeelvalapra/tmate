@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import { View, Button, Text, Navigator, AsyncStorage, StyleSheet, Image } from 'react-native';
+import { AsyncStorage, StyleSheet, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux'
+import * as splashAction from '../actions/splash';
+import { connect } from 'react-redux';
 
-export default class Splash extends Component {
+
+class SplashScreen extends Component {
 
   render() {
     return (
-      <Image source={require('../../static/rail-image.jpg')} style={styles.bgImage} />
+      <Image source={require('../static/rail-image.jpg')} style={styles.bgImage} />
     )
   }
 
@@ -17,7 +20,7 @@ export default class Splash extends Component {
       let success = await this._verifyToken(token);
       if (success == true) {
         console.log('Token :' + token);
-        Actions.counter();      
+         Actions.counter();      
       } 
     } else {
       console.log('Login Failed !!!');
@@ -33,7 +36,7 @@ export default class Splash extends Component {
       console.log('Error in fetching OAuthToken: ' + error);
     }
   }
-
+  
   async _verifyToken(token) {
     return fetch('http://localhost:8000/token/'+ token + '/1.json', {
         'method': 'get'
@@ -47,6 +50,17 @@ export default class Splash extends Component {
       });
   }
 }
+
+export default connect(
+  (state) => {
+    return {
+    }
+  } ,
+  (dispatch) => {
+    return {
+    }
+  }
+)(SplashScreen);
 
 const styles = StyleSheet.create({
   bgImage: {

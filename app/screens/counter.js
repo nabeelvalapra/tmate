@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as recipeAction from '../actions/recipes';
+import * as recipeAction from '../actions/recipe';
 
 
-class CounterContainer extends Component {
+class CounterScreen extends Component {
   render() {
     let props = this.props;
     return (
@@ -33,4 +33,4 @@ export default connect(
       }
     }
   }
-)(CounterContainer);
+)(CounterScreen);
