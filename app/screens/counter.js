@@ -10,7 +10,7 @@ class CounterScreen extends Component {
     let props = this.props;
     return (
       <View>
-        <Text> Hello </Text>
+        <Text> Hello, you are: {props.loggedInStatus} !!!</Text>
         <Text> Recipie Count: {props.recipeCount} </Text>
         <TouchableHighlight onPress={() => {props.addRecipe()}}>
           <Text> ADD </Text>
@@ -23,7 +23,8 @@ class CounterScreen extends Component {
 export default connect(
   (state) => {
     return {
-      recipeCount: state.recipeCount
+      recipeCount: state.recipeCount,
+      loggedInStatus: state.loginStatus ? "True" : "False" 
     }
   } ,
   (dispatch) => {

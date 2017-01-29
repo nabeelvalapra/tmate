@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import * as recipeReducers from './recipes';
+import * as recipeReducers from './recipe';
+import * as splashReducers from './splash';
 
 export default combineReducers(Object.assign({},
-  recipeReducers,
+  recipeReducers, splashReducers
 ));

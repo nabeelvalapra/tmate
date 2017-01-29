@@ -19,7 +19,8 @@ class SplashScreen extends Component {
     if (token !== null) {
       let success = await this._verifyToken(token);
       if (success == true) {
-        console.log('Token :' + token);
+         console.log('Token :' + token);
+         this.props.loginStatus(true);
          Actions.counter();      
       } 
     } else {
@@ -52,12 +53,11 @@ class SplashScreen extends Component {
 }
 
 export default connect(
-  (state) => {
-    return {
-    }
-  } ,
+  null,
   (dispatch) => {
     return {
+      loginStatus: (status) =>
+        dispatch(splashAction.loginStatus(status))
     }
   }
 )(SplashScreen);

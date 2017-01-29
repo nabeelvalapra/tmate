@@ -1,3 +1,4 @@
 export const SET_SEARCHED_RECIPIES = 'SET_SEARCHED_RECIPIES';
 
 export const ADD_RECIPE = 'ADD_RECIPE';
+export const LOGIN_STATUS = 'LOGIN_STATUS';
