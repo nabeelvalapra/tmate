@@ -33,7 +33,7 @@ function configureStore(initialState) {
   );
   return createStore(reducer, initialState, enhancer);
 }
-const store = configureStore({});
+export const store = configureStore({});
 /* Store registration ends. */
 
 const TmateApp = () => (

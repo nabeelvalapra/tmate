@@ -3,6 +3,7 @@ import { AsyncStorage, StyleSheet, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import * as splashAction from '../actions/splash';
 import { connect } from 'react-redux';
+import store from '../../index.android.js';
 
 
 class SplashScreen extends Component {
@@ -13,53 +14,22 @@ class SplashScreen extends Component {
     )
   }
 
-  async componentDidMount() {
-    let token = await this._getOAuthToken();
-    token = '4iz-9d6cc0ca2a40a2f16345';
-    if (token !== null) {
-      let success = await this._verifyToken(token);
-      if (success == true) {
-         console.log('Token :' + token);
-         this.props.loginStatus(true);
-         Actions.counter();      
-      } 
-    } else {
-      console.log('Login Failed !!!');
-      Actions.counter(); 
-    }
-  }
-
-  async _getOAuthToken() {
-    const TOKEN = '@OAuthToken:key';
-    try {
-      return await AsyncStorage.getItem(TOKEN);
-    } catch (error) {
-      console.log('Error in fetching OAuthToken: ' + error);
-    }
-  }
-  
-  async _verifyToken(token) {
-    return fetch('http://localhost:8000/token/'+ token + '/1.json', {
-        'method': 'get'
-      })
-      .then((response) => response.json())
-      .then((responseData) => {
-        return responseData.success
-      })
-      .catch((error) => {
-        console.log("ERROR: " + error);
+  componentDidMount() {
+    this.props.dispatch(splashAction.getLoginStatus())
+      .then((success) => {
+        if (success == true) {
+          Actions.counter()
+        } else {
+          console.log("Login not successfull");
+          Actions.counter()
+        }
       });
   }
 }
 
+
 export default connect(
-  null,
-  (dispatch) => {
-    return {
-      loginStatus: (status) =>
-        dispatch(splashAction.loginStatus(status))
-    }
-  }
+  null, null
 )(SplashScreen);
 
 const styles = StyleSheet.create({
