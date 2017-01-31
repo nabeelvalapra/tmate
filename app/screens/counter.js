@@ -5,17 +5,33 @@ import { bindActionCreators } from 'redux';
 import * as recipeAction from '../actions/recipe';
 
 
+const Counter = (prop) => {
+  const { loggedInStatus, recipeCount, addRecipe } = prop;
+  return (
+    <View>
+      <Text> Hello, you are: {loggedInStatus} !!!</Text>
+      <Text> Recipie Count: {recipeCount} </Text>
+      <TouchableHighlight onPress={() => {addRecipe()}}>
+        <Text> ADD </Text>
+      </TouchableHighlight>
+    </View>
+  )
+};
+
+Counter.propTypes = {
+  loggedInStatus: React.PropTypes.string,
+  recipeCount: React.PropTypes.number,
+  addRecipe: React.PropTypes.func
+};
+
 class CounterScreen extends Component {
   render() {
-    let props = this.props;
     return (
-      <View>
-        <Text> Hello, you are: {props.loggedInStatus} !!!</Text>
-        <Text> Recipie Count: {props.recipeCount} </Text>
-        <TouchableHighlight onPress={() => {props.addRecipe()}}>
-          <Text> ADD </Text>
-        </TouchableHighlight>
-      </View>
+      <Counter
+        loggedInStatus={this.props.loggedInStatus}
+        recipeCount={this.props.recipeCount}
+        addRecipe={this.props.addRecipe}
+      />
     )
   }
 }
