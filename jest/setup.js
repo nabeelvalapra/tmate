@@ -1,3 +1,5 @@
+global.fetch = require('jest-fetch-mock');
+
 jest.mock('Linking', () => {
   return {
     addEventListener: jest.fn(),
@@ -5,17 +7,5 @@ jest.mock('Linking', () => {
     openURL: jest.fn(),
     canOpenURL: jest.fn(),
     getInitialURL: jest.fn(),
-  }
-});
-
-jest.mock('NetInfo', () => {
-  return {
-    isConnected: {
-      fetch: () => {
-        return new Promise((accept, resolve) => {
-          accept(true);
-        })
-      }
-    }
   }
 });
