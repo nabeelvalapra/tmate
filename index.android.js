@@ -36,7 +36,7 @@ function configureStore(initialState) {
 export const store = configureStore({});
 /* Store registration ends. */
 
-const TmateApp = () => (
+export default TmateApp = () => (
   <Provider store={store}>
     <Router scenes={scenes} />
   </Provider>

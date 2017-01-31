@@ -28,9 +28,7 @@ class SplashScreen extends Component {
 }
 
 
-export default connect(
-  null, null
-)(SplashScreen);
+export default connect(null, null)(SplashScreen);
 
 const styles = StyleSheet.create({
   bgImage: {

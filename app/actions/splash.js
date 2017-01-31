@@ -28,8 +28,8 @@ export function getLoginStatus() {
 async function getOAuthToken() {
   const TOKEN = '@OAuthToken:key';
   try {
-    return await AsyncStorage.getItem(TOKEN);  
-    /* return '4iz-9d6cc0ca2a40a2f16345'; */ 
+    /* return await AsyncStorage.getItem(TOKEN); */  
+    return '4iz-9d6cc0ca2a40a2f16345';  
   } catch (error) {
     console.log('Error in fetching OAuthToken: ' + error);
   }
