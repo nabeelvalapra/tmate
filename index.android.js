@@ -9,6 +9,8 @@ import reducer from './app/reducers';
 
 import SplashScreen from './app/screens/splash';
 import CounterScreen from './app/screens/counter';
+import ScrollTest from './app/screens/scrollTest';
+import AniEase from './app/screens/aniEase';
 
 
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__ });
@@ -16,8 +18,10 @@ const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__
 /* Screen registration. */
 const scenes = Actions.create(
     <Scene key="root" >
-      <Scene key="splash" component={SplashScreen} hideNavBar="true"/>
+      <Scene key="aniEase" component={AniEase} hideNavBar="true" title="AniEase"/>
+      <Scene key="scrollTest" component={ScrollTest} hideNavBar="true" title="ScrollTest"/>
       <Scene key="counter" component={CounterScreen} title="Counter"/>
+      <Scene key="splash" component={SplashScreen} hideNavBar="true"/>
     </Scene>
 );
 /* Screen registration ends. */
